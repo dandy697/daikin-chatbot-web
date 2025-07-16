@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chatbot Daikin Algérie</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f2f2f2; margin: 0; padding: 0; }
+    #chatbox { max-width: 500px; margin: 50px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .message { margin: 10px 0; }
+    .bot { background: #e6f7ff; padding: 10px; border-radius: 6px; }
+    .user { text-align: right; background: #d9fdd3; padding: 10px; border-radius: 6px; }
+    input[type="text"] { width: 80%; padding: 10px; margin-top: 10px; border-radius: 6px; border: 1px solid #ccc; }
+    button { padding: 10px 15px; border: none; border-radius: 6px; background: #007bff; color: white; cursor: pointer; }
+    .options button { margin: 5px 2px; background: #444; }
+  </style>
+</head>
+<body>
+  <div id="chatbox">
+    <div class="message bot">👋 Bonjour, bienvenue chez <strong>Daikin Algérie</strong> !<br>Que souhaitez-vous faire ?</div>
+    <div class="options">
+      <button onclick="botResponse('produits')">Voir nos produits</button>
+      <button onclick="botResponse('sav')">Contacter le SAV</button>
+      <button onclick="botResponse('rdv')">Prendre un RDV</button>
+      <button onclick="botResponse('conseiller')">Parler à un conseiller</button>
+    </div>
+  </div>
+  <script>
+    const chatbox = document.getElementById('chatbox');
+    function addMessage(text, sender = 'bot') {
+      const msg = document.createElement('div');
+      msg.className = 'message ' + sender;
+      msg.innerHTML = text;
+      chatbox.appendChild(msg);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    function botResponse(option) {
+      addMessage(option, 'user');
+      if(option === 'produits') {
+        addMessage("📦 Voici nos gammes :<br>• Climatisation résidentielle<br>• Système VRV<br>• Froid industriel<br><br>Souhaitez-vous recevoir une fiche produit ?", 'bot');
+      } else if(option === 'sav') {
+        addMessage("🛠 Merci de décrire votre problème, envoyer une photo (non supportée ici) et préciser votre ville.", 'bot');
+      } else if(option === 'rdv') {
+        addMessage("📅 Cliquez ici pour réserver un RDV : <a href='https://calendly.com/daikin-algerie/visite-technique' target='_blank'>Prendre RDV</a>", 'bot');
+      } else if(option === 'conseiller') {
+        addMessage("👤 Un conseiller vous répondra sous peu. Merci de patienter !", 'bot');
+      }
+    }
+  </script>
+</body>
+</html>
